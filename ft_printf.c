@@ -6,11 +6,11 @@
 /*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:20:53 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/20 19:55:35 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/10/22 14:03:24 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
 #include "ft_printf.h"
 
 /*
