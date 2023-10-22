@@ -6,27 +6,34 @@
 #    By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/20 19:39:51 by tunsal            #+#    #+#              #
-#    Updated: 2023/10/20 19:54:23 by tunsal           ###   ########.fr        #
+#    Updated: 2023/10/22 16:15:06 by tunsal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= ft_printf.c
-OBJS		= $(SRCS:.c=.o)
+SRCS				= ft_printf.c ft_putchar.c ft_putnbr_base.c \
+					  ft_putnbr_hex_upcase.c ft_putnbr_hex.c ft_putnbr.c \
+					  ft_putstr.c
+OBJS				= $(SRCS:.c=.o)
 
-NAME		= libftprintf.a
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -I.
-RM			= rm -f
+NAME				= libftprintf.a
+CC					= gcc
+CFLAGS				= -Wall -Wextra -Werror
 
-all:		$(NAME)
+all:				$(NAME)
 
-$(NAME):	./libft/libft.a $(OBJS)
-			ar rcs $(NAME) $(OBJS)
+$(NAME):			./libft/libft.a $(OBJS)
+					cp ./libft/libft.a $(NAME)
+					ar rcs $(NAME) $(OBJS)
+
+./libft/libft.a:
+					make -C ./libft all
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+					make -C ./libft clean
+					rm -rf $(OBJS)
 
-fclean:		clean
-	$(RM) $(NAME)
+fclean:				clean
+					make -C ./libft fclean
+					rm -rf $(NAME)
 
-re: 		fclean all
+re: 				fclean all
