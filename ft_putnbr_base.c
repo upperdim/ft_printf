@@ -63,7 +63,7 @@ size_t	ft_putnbr_base(int nbr, char *base)
 
 	base_len = ft_strlen(base);
 	if (!is_valid_base(base, base_len))
-		return ;
+		return (0);
 	if (nbr >= 0)
 	{
 		buff_idx = count_num_digits_base(nbr, base_len);
