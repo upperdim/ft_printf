@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 14:05:10 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/22 14:12:26 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/10/23 14:09:04 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_putstr(char *s)
 	size_t	s_len;
 
 	if (s == NULL)
-		return ;
+		return (0);
 	s_len = ft_strlen(s);
 	write(1, s, s_len);
 	return (s_len);
