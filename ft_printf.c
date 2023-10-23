@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:20:53 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/23 18:14:27 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/10/23 19:37:07 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 static int	handle_symbols(const char *fmt, va_list *valist, int *p_printed_cnt)
 {
 	if (*fmt == 'c')
-		*p_printed_cnt += ft_putchar(va_arg(*valist, int));
+		*p_printed_cnt += ft_putchar((char) va_arg(*valist, int));
 	else if (*fmt == 's')
 		*p_printed_cnt += ft_putstr(va_arg(*valist, char *));
 	else if (*fmt == 'p')
