@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:20:53 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/23 17:29:09 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/10/23 17:45:59 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_printf(const char *fmt, ...)
 		}
 		else
 			print_count += ft_putchar(*fmt);
-		++fmt;		
+		++fmt;
 	}
 	va_end(valist);
 	return (print_count);

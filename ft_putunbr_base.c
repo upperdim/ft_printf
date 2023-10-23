@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putunbr_base.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 17:39:33 by tunsal            #+#    #+#             */
+/*   Updated: 2023/10/23 17:44:52 by tunsal           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft/libft.h"
 #include "ft_printf.h"
 
@@ -81,7 +93,7 @@ size_t	ft_putunbr_base(unsigned int nbr, char *base)
 */
 size_t	ft_putunbr_hex_upcase(unsigned int n)
 {
-   return (ft_putunbr_base(n, "0123456789ABCDEF"));
+	return (ft_putunbr_base(n, "0123456789ABCDEF"));
 }
 
 /*
@@ -90,5 +102,5 @@ size_t	ft_putunbr_hex_upcase(unsigned int n)
 */
 size_t	ft_putunbr_hex(unsigned int n)
 {
-   return (ft_putunbr_base(n, "0123456789abcdef"));
+	return (ft_putunbr_base(n, "0123456789abcdef"));
 }

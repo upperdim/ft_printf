@@ -1,9 +1,21 @@
-#ifndef FT_PRINTF
-# define FT_PRINTF
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 17:39:41 by tunsal            #+#    #+#             */
+/*   Updated: 2023/10/23 17:46:15 by tunsal           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
+# include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
 # include "libft/libft.h"
 
 int		ft_printf(const char *fmt, ...);
