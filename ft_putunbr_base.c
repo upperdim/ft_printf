@@ -3,15 +3,14 @@
 
 /*
  * Longest string is when the base is 2. 4 byte integer has 32 bits.
- * For positive, number can be 32 digits long. + 1 for '\0'.
- * For negative, number can be 31 digits long. + 2 for '-' and '\0'.
+ * Unsigned number can be 32 digits long. + 1 for '\0'.
  */
 #define BUFF_SIZE 33
 
 /*
  * base_dig_count: 10 for decimal (base-10), 16 for hex (base-16) etc.
  */
-static int	count_num_digits_base(int nb, int base_dig_count)
+static int	count_num_digits_base(unsigned int nb, int base_dig_count)
 {
 	int	digit_count;
 
@@ -54,7 +53,7 @@ static int	is_valid_base(char *base, int len)
 
    Return number of characters printed on the screen.
 */
-size_t	ft_putnbr_base(int nbr, char *base)
+size_t	ft_putunbr_base(unsigned int nbr, char *base)
 {
 	char	buff[BUFF_SIZE];
 	int		buff_idx;
@@ -64,23 +63,32 @@ size_t	ft_putnbr_base(int nbr, char *base)
 	base_len = ft_strlen(base);
 	if (!is_valid_base(base, base_len))
 		return (0);
-	if (nbr >= 0)
-	{
-		buff_idx = count_num_digits_base(nbr, base_len);
-		buff[0] = base[0];
-		nbr = -nbr;
-	}
-	else
-	{
-		buff_idx = count_num_digits_base(nbr, base_len) + 1;
-		buff[0] = '-';
-	}
+	buff_idx = count_num_digits_base(nbr, base_len);
+	buff[0] = base[0];
 	buff[buff_idx--] = '\0';
-	while (nbr < 0)
+	while (nbr > 0)
 	{
-		buff[buff_idx--] = base[-(nbr % base_len)];
+		buff[buff_idx--] = base[(nbr % base_len)];
 		nbr /= base_len;
 	}
 	printed_count = ft_putstr(buff);
 	return (printed_count);
+}
+
+/*
+   Write number `n` into standard output in uppercase notation hexadecimal base 
+   and return the number of characters printed.
+*/
+size_t	ft_putunbr_hex_upcase(unsigned int n)
+{
+   return (ft_putunbr_base(n, "0123456789ABCDEF"));
+}
+
+/*
+   Write number `n` into standard output in hexadecimal base 
+   and return the number of characters printed.
+*/
+size_t	ft_putunbr_hex(unsigned int n)
+{
+   return (ft_putunbr_base(n, "0123456789abcdef"));
 }
