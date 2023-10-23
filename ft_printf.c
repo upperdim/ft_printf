@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:20:53 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/22 14:03:24 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/10/23 14:47:01 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,35 @@
 
 	ft_printf("hello %c there %d\n", )
 */
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *fmt, ...)
 {
 	va_list	valist;
 	size_t	print_count;
 	size_t	curr_placeholder_idx;
 
-	va_start(valist, str);
+	if (fmt == NULL)
+		return (0);
+
+	va_start(valist, fmt);
 	curr_placeholder_idx = 0;
 	print_count = 0;
-	while (*str != '\0')
+	while (*fmt != '\0')
 	{
-		if (*str == '%')
+		if (*fmt == '%')
 		{
-			++str;
-			switch (*str)
+			int param_int;
+			char *param_str;
+			unsigned int param_uint;
+			
+			++fmt;
+			switch (*fmt)
 			{
 				case 'c':
-					ft_putchar(va_arg(valist, char));
+					ft_putchar(va_arg(valist, int));
 					++print_count;
 					break;
 				case 's':
-					char *param_str = va_arg(valist, char *);
+					param_str = va_arg(valist, char *);
 					print_count += ft_putstr(param_str);
 					break;
 				case 'p':
@@ -61,22 +68,22 @@ int	ft_printf(const char *str, ...)
 					break;
 				case 'd':
 				case 'i':
-					int param_int = va_arg(valist, char);
+					param_int = va_arg(valist, int);
 					print_count += ft_putnbr(param_int);
 					break;
 				case 'u':
 					// Get the number whether dec, oct or hex
 					// Without modifying it, interpret its bits as base 10 unsigned decimal
 					// Print it
-					unsigned int param_uint = va_arg(valist, int);
-					print_count += ft_putnbr(param_uint);
+					param_uint = va_arg(valist, unsigned int);
+					print_count += ft_putunbr(param_uint);
 					break;
 				case 'x':
-					int param_int = va_arg(valist, int);
+					param_int = va_arg(valist, unsigned int);
 					print_count += ft_putnbr_hex(param_int);
 					break;
 				case 'X':
-					int param_int = va_arg(valist, int);
+					param_int = va_arg(valist, unsigned int);
 					print_count += ft_putnbr_hex_upcase(param_int);
 					break;
 				case '%':
@@ -89,10 +96,10 @@ int	ft_printf(const char *str, ...)
 		}
 		else
 		{
-			ft_putchar(*str);
+			ft_putchar(*fmt);
 			++print_count;
 		}
-		++str;		
+		++fmt;		
 	}
 	va_end(valist);
 	return (print_count);
