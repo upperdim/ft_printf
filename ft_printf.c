@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:20:53 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/24 16:49:26 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/10/24 16:52:13 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,35 @@
 #define FAILURE -1
 
 /*
-   Handle symbols and update number of characters printed to the screen 
-   via `p_printed_cnt` parameter.
+   Handle format specifiers and update number of characters printed to the 
+   screen via `p_printed_cnt` parameter.
    Return 0 (defined as SUCCESS) if no errors, else -1 (defined as FAILURE).
 */
-static int	handle_symbols(const char *fmt, va_list *valist, int *p_printed_cnt)
+static int	handle_specifiers(const char *fmt, va_list *valst, int *p_print_cnt)
 {
 	int	ret;
 
 	if (*fmt == 'c')
-		ret = ft_putchar((char) va_arg(*valist, int));
+		ret = ft_putchar((char) va_arg(*valst, int));
 	else if (*fmt == 's')
-		ret = ft_putstr(va_arg(*valist, char *));
+		ret = ft_putstr(va_arg(*valst, char *));
 	else if (*fmt == 'p')
-		ret = ft_putunbr_ptr(va_arg(*valist, size_t), 1);
+		ret = ft_putunbr_ptr(va_arg(*valst, size_t), 1);
 	else if (*fmt == 'd' || *fmt == 'i')
-		ret = ft_putnbr(va_arg(*valist, int));
+		ret = ft_putnbr(va_arg(*valst, int));
 	else if (*fmt == 'u')
-		ret = ft_putunbr(va_arg(*valist, unsigned int));
+		ret = ft_putunbr(va_arg(*valst, unsigned int));
 	else if (*fmt == 'x')
-		ret = ft_putunbr_hex(va_arg(*valist, unsigned int), 0);
+		ret = ft_putunbr_hex(va_arg(*valst, unsigned int), 0);
 	else if (*fmt == 'X')
-		ret = ft_putunbr_hex(va_arg(*valist, unsigned int), 1);
+		ret = ft_putunbr_hex(va_arg(*valst, unsigned int), 1);
 	else if (*fmt == '%')
 		ret = ft_putchar('%');
 	else
 		return (FAILURE);
 	if (ret < 0)
 		return (FAILURE);
-	*p_printed_cnt += ret;
+	*p_print_cnt += ret;
 	return (SUCCESS);
 }
 
@@ -62,7 +62,7 @@ int	ft_printf(const char *fmt, ...)
 	{
 		if (*fmt == '%')
 		{
-			if (handle_symbols(++fmt, &valist, &print_count) == FAILURE)
+			if (handle_specifiers(++fmt, &valist, &print_count) == FAILURE)
 				return (-1);
 		}
 		else
