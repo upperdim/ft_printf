@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 14:05:07 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/23 17:35:15 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/10/24 16:37:11 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,15 @@ static int	count_digits_unsigned(unsigned int nb)
 	return (digit_count);
 }
 
-/* Print a number to the standard out and return number of characters printed.*/
-size_t	ft_putnbr(int nb)
+/*
+   Print a number to the standard out and return number of characters printed.
+   Return -1 if write fails or upon any error.
+*/
+int	ft_putnbr(int nb)
 {
 	char	buff[BUFF_SIZE];
 	int		buff_idx;
-	size_t	num_len;
+	ssize_t	ret;
 
 	if (nb >= 0)
 	{
@@ -78,20 +81,23 @@ size_t	ft_putnbr(int nb)
 		buff[buff_idx--] = '0' + -(nb % 10);
 		nb /= 10;
 	}
-	num_len = ft_strlen(buff);
-	write(1, buff, num_len);
-	return (num_len);
+	ret = write(1, buff, ft_strlen(buff));
+	if (ret != (ssize_t) ft_strlen(buff))
+		return (-1);
+	return (ret);
 }
 
 /*
    Print an unsigned number to the standard out 
    and return number of characters printed.
+   Return -1 if write fails or upon any error.
 */
-size_t	ft_putunbr(unsigned int nb)
+int	ft_putunbr(unsigned int nb)
 {
 	char	buff[U_BUFF_SIZE];
 	int		buff_idx;
 	size_t	num_len;
+	ssize_t	ret;
 
 	buff[0] = '0';
 	buff_idx = count_digits_unsigned(nb);
@@ -103,6 +109,8 @@ size_t	ft_putunbr(unsigned int nb)
 		--buff_idx;
 	}
 	num_len = ft_strlen(buff);
-	write(1, buff, num_len);
-	return (num_len);
+	ret = write(1, buff, num_len);
+	if (ret != (ssize_t) num_len)
+		return (-1);
+	return (ret);
 }
