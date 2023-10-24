@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:39:33 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/23 18:07:56 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/10/24 15:08:57 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ static int	is_valid_base(char *base, int len)
 }
 
 /*
-   Print decimal number `nbr` in given base `base`. `base` consists of
-   all the digits of that base.
+   Print decimal size `nbr` in given base `base`. `base` consists of
+   all the digits in that base.
    For example, `base` would be "0123456789abcdef" for hex.
 
    Return number of characters printed on the screen.
 */
-size_t	ft_putunbr_base(size_t nbr, char *base)
+size_t	ft_putsize_base(size_t nbr, char *base)
 {
 	char	buff[BUFF_SIZE];
 	int		buff_idx;
@@ -97,9 +97,9 @@ size_t	ft_putunbr_base(size_t nbr, char *base)
 size_t	ft_putunbr_hex(unsigned int n, int use_uppercase_notation)
 {
 	if (use_uppercase_notation)
-		return (ft_putunbr_base((size_t) n, "0123456789ABCDEF"));
+		return (ft_putsize_base((size_t) n, "0123456789ABCDEF"));
 	else
-		return (ft_putunbr_base((size_t) n, "0123456789abcdef"));
+		return (ft_putsize_base((size_t) n, "0123456789abcdef"));
 }
 
 /*
@@ -115,6 +115,6 @@ size_t	ft_putunbr_ptr(size_t addr, int use_hex_prefix)
 	printed_count = 0;
 	if (use_hex_prefix)
 		printed_count += ft_putstr("0x");
-	printed_count += ft_putunbr_base(addr, "0123456789abcdef");
+	printed_count += ft_putsize_base(addr, "0123456789abcdef");
 	return (printed_count);
 }
