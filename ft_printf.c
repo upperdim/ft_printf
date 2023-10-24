@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:20:53 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/24 16:43:46 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/10/24 16:49:26 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,6 @@ static int	handle_symbols(const char *fmt, va_list *valist, int *p_printed_cnt)
 	return (SUCCESS);
 }
 
-/*
-   TODO:
-    - Don't implement the buff management of the original printf.
-	- Handle conversions: 
-	  %c: print a single char
-	  %s: print a string
-	  %p: The void * pointer argument has to be printed in hexadecimal format
-	  %d: print a decimal (base 10) number
-	  %i: print an integer in base 10
-	  %u: print an unsigned decimal (base 10) number
-	  %x: prints a number in hex lowercase format
-	  %X: prints a number in hex uppercase format
-	  %%: prints a percent sign
-	- Compare against the original printf().
-	- Use `ar` to create libftprintf.a at root of repo, NOT `libtool`.
-
-	ft_printf("hello %c there %d\n", )
-*/
 int	ft_printf(const char *fmt, ...)
 {
 	va_list	valist;
