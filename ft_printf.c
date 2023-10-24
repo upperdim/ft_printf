@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:20:53 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/23 19:37:07 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/10/24 16:43:46 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,29 @@
 */
 static int	handle_symbols(const char *fmt, va_list *valist, int *p_printed_cnt)
 {
+	int	ret;
+
 	if (*fmt == 'c')
-		*p_printed_cnt += ft_putchar((char) va_arg(*valist, int));
+		ret = ft_putchar((char) va_arg(*valist, int));
 	else if (*fmt == 's')
-		*p_printed_cnt += ft_putstr(va_arg(*valist, char *));
+		ret = ft_putstr(va_arg(*valist, char *));
 	else if (*fmt == 'p')
-		*p_printed_cnt += ft_putunbr_ptr(va_arg(*valist, size_t), 1);
+		ret = ft_putunbr_ptr(va_arg(*valist, size_t), 1);
 	else if (*fmt == 'd' || *fmt == 'i')
-		*p_printed_cnt += ft_putnbr(va_arg(*valist, int));
+		ret = ft_putnbr(va_arg(*valist, int));
 	else if (*fmt == 'u')
-		*p_printed_cnt += ft_putunbr(va_arg(*valist, unsigned int));
+		ret = ft_putunbr(va_arg(*valist, unsigned int));
 	else if (*fmt == 'x')
-		*p_printed_cnt += ft_putunbr_hex(va_arg(*valist, unsigned int), 0);
+		ret = ft_putunbr_hex(va_arg(*valist, unsigned int), 0);
 	else if (*fmt == 'X')
-		*p_printed_cnt += ft_putunbr_hex(va_arg(*valist, unsigned int), 1);
+		ret = ft_putunbr_hex(va_arg(*valist, unsigned int), 1);
 	else if (*fmt == '%')
-		*p_printed_cnt += ft_putchar('%');
+		ret = ft_putchar('%');
 	else
 		return (FAILURE);
+	if (ret < 0)
+		return (FAILURE);
+	*p_printed_cnt += ret;
 	return (SUCCESS);
 }
 
@@ -79,7 +84,11 @@ int	ft_printf(const char *fmt, ...)
 				return (-1);
 		}
 		else
-			print_count += ft_putchar(*fmt);
+		{
+			if (ft_putchar(*fmt) != 1)
+				return (-1);
+			print_count += 1;
+		}
 		++fmt;
 	}
 	va_end(valist);
