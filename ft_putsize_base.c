@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr_base.c                                  :+:      :+:    :+:   */
+/*   ft_putsize_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:39:33 by tunsal            #+#    #+#             */
-/*   Updated: 2023/10/24 16:27:10 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/11/05 16:50:22 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_printf.h"
 
 /*
@@ -89,48 +88,5 @@ int	ft_putsize_base(size_t nbr, char *base)
 	printed_count = ft_putstr(buff);
 	if (num_len != printed_count)
 		return (-1);
-	return (printed_count);
-}
-
-/*
-   Write number `n` into standard output in hexadecimal base 
-   and return the number of characters printed.
-   Return -1 if ft_putsize_base fails or upon any error.
-
-   Uppercase hexadecimal notation will be used if `use_uppercase_notation`
-   flag is true.
-*/
-int	ft_putunbr_hex(unsigned int n, int use_uppercase_notation)
-{
-	if (use_uppercase_notation)
-		return (ft_putsize_base((size_t) n, "0123456789ABCDEF"));
-	else
-		return (ft_putsize_base((size_t) n, "0123456789abcdef"));
-}
-
-/*
-   Write number `n` into standard output in hexadecimal base 
-   and return the number of characters printed.
-   Return -1 if ft_putstr fails or upon any error.
-
-   Prefix "0x" to the number if `use_hex_prefix` is true.
-*/
-int	ft_putunbr_ptr(size_t addr, int use_hex_prefix)
-{
-	int	printed_count;
-	int	ret;
-
-	printed_count = 0;
-	if (use_hex_prefix)
-	{
-		ret = ft_putstr("0x");
-		if (ret != 2)
-			return (-1);
-		printed_count += ret;
-	}
-	ret = ft_putsize_base(addr, "0123456789abcdef");
-	if (ret < 0)
-		return (-1);
-	printed_count += ret;
 	return (printed_count);
 }
