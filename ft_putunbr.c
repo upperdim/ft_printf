@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:44:02 by tunsal            #+#    #+#             */
-/*   Updated: 2023/11/05 16:46:55 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/11/11 20:52:59 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_putunbr(unsigned int nb)
 		--buff_idx;
 	}
 	num_len = ft_strlen(buff);
-	ret = write(1, buff, num_len);
+	ret = write(STDOUT_FD, buff, num_len);
 	if (ret != (ssize_t) num_len)
 		return (-1);
 	return (ret);

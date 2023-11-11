@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 14:05:07 by tunsal            #+#    #+#             */
-/*   Updated: 2023/11/11 20:51:19 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/11/11 20:52:55 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	ft_putnbr_helper(char *buff)
 	int	buff_len;
 
 	buff_len = ft_strlen(buff);
-	ret = write(1, buff, buff_len);
+	ret = write(STDOUT_FD, buff, buff_len);
 	if (ret != (ssize_t) buff_len)
 		return (-1);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 14:05:10 by tunsal            #+#    #+#             */
-/*   Updated: 2023/11/05 16:46:27 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/11/11 20:52:53 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int	ft_putstr(char *s)
 
 	if (s == NULL)
 	{
-		ret = write(1, "(null)", 6);
+		ret = write(STDOUT_FD, "(null)", 6);
 		if (ret != 6)
 			return (-1);
 		return (ret);
 	}
 	s_len = ft_strlen(s);
-	ret = write(1, s, s_len);
+	ret = write(STDOUT_FD, s, s_len);
 	if (ret != (ssize_t) s_len)
 		return (-1);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:39:41 by tunsal            #+#    #+#             */
-/*   Updated: 2023/11/11 20:19:28 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/11/11 20:52:38 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include "libft/libft.h"
+
+# define STDOUT_FD 1
 
 int	ft_printf(const char *fmt, ...);
 
