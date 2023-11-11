@@ -6,7 +6,7 @@
 #    By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/20 19:39:51 by tunsal            #+#    #+#              #
-#    Updated: 2023/11/05 16:51:47 by tunsal           ###   ########.fr        #
+#    Updated: 2023/11/11 21:03:35 by tunsal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,13 @@ NAME				= libftprintf.a
 CC					= gcc
 CFLAGS				= -Wall -Wextra -Werror
 
-all:				$(NAME)
+all:				./libft/libft.a $(NAME)
 
-$(NAME):			makelibft $(OBJS)
-					cp ./libft/libft.a ./$(NAME)
-					ar -r $(NAME) $(OBJS)
+$(NAME):			$(OBJS)
+					cp libft/libft.a $(NAME)
+					ar -r $(NAME) $(OBJS) 
 
-makelibft:
+./libft/libft.a:
 					make -C ./libft all
 
 clean:
@@ -34,4 +34,4 @@ fclean:				clean
 					make -C ./libft fclean
 					rm -f $(NAME)
 
-re: 				fclean all
+re:					fclean all
