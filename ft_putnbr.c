@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 14:05:07 by tunsal            #+#    #+#             */
-/*   Updated: 2023/11/05 16:47:06 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/11/11 20:51:19 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,26 @@ static int	count_digits(int nb)
 	return (digit_count);
 }
 
+/* 
+   Write `buff` to the stdout and return number of characters printed.
+   Return -1 upon errors.
+   
+   Helper function for ft_putnbr purely because of Norm coding standards' 
+   25 lines limit for functions. I will sacrifica some elegance and readability
+   for performance.
+*/
+static int	ft_putnbr_helper(char *buff)
+{
+	int	ret;
+	int	buff_len;
+
+	buff_len = ft_strlen(buff);
+	ret = write(1, buff, buff_len);
+	if (ret != (ssize_t) buff_len)
+		return (-1);
+	return (ret);
+}
+
 /*
    Print a number to the standard out and return number of characters printed.
    Return -1 if write fails or upon any error.
@@ -41,7 +61,6 @@ int	ft_putnbr(int nb)
 {
 	char	buff[BUFF_SIZE];
 	int		buff_idx;
-	ssize_t	ret;
 
 	if (nb >= 0)
 	{
@@ -60,8 +79,5 @@ int	ft_putnbr(int nb)
 		buff[buff_idx--] = '0' + -(nb % 10);
 		nb /= 10;
 	}
-	ret = write(1, buff, ft_strlen(buff));
-	if (ret != (ssize_t) ft_strlen(buff))
-		return (-1);
-	return (ret);
+	return (ft_putnbr_helper(buff));
 }
