@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:39:33 by tunsal            #+#    #+#             */
-/*   Updated: 2023/11/11 20:55:26 by tunsal           ###   ########.fr       */
+/*   Updated: 2023/11/11 20:59:51 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_putsize_base(size_t nbr, char *base)
 
 	base_len = ft_strlen(base);
 	if (!is_valid_base(base, base_len))
-		return (0);
+		return (-1);
 	buff_idx = count_num_digits_base(nbr, base_len);
 	buff[0] = base[0];
 	buff[buff_idx--] = '\0';
